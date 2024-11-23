@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DeviceListHeader } from './device-list-header';
+import { DeviceList } from './device-list';
 
-const meta: Meta<typeof DeviceListHeader> = {
-  title: 'Components/Devices/DeviceListHeader',
-  component: DeviceListHeader,
+const meta: Meta<typeof DeviceList> = {
+  title: 'Components/Devices/DeviceList',
+  component: DeviceList,
   parameters: {
     layout: 'fullscreen',
   },
@@ -18,6 +18,6 @@ const meta: Meta<typeof DeviceListHeader> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof DeviceListHeader>;
+type Story = StoryObj<typeof DeviceList>;
 
-export const Default: Story = {};
+export const Default: Story = {}; 
