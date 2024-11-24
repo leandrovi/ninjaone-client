@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Device } from "@/lib/mock-data";
@@ -55,12 +55,18 @@ export const DeviceDialog = ({ mode, device, children }: DeviceDialogProps) => {
         </div>
 
         <DialogFooter className="mt-2 gap-2 md:gap-1">
-          <Button
-            variant="outline"
-            className="font-normal border-outline/25 hover:border-primary text-primary hover:bg-primary hover:text-primary-foreground !py-[11px]"
-          >
-            Cancel
-          </Button>
+          <DialogClose asChild>
+            <Button
+              variant="outline"
+              className="font-normal border-outline/25 hover:border-primary text-primary hover:bg-primary hover:text-primary-foreground !py-[11px]"
+              onClick={() => {
+                console.log("Cancel");
+              }}
+            >
+              Cancel
+            </Button>
+          </DialogClose>
+
           <Button type="submit" className="font-normal">
             Submit
           </Button>
