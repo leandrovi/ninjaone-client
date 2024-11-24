@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 import { MoreHorizontal } from "lucide-react";
 
 import WindowsIcon from "@/assets/icons/windows.svg";
@@ -24,7 +24,7 @@ interface DeviceListItemProps {
   onDelete: () => void;
 }
 
-const SystemIcon: FC<{ system: Device["type"] }> = ({ system }) => {
+const SystemIcon: React.FC<{ system: Device["type"] }> = ({ system }) => {
   switch (system) {
     case "WINDOWS":
       return <img src={WindowsIcon} alt="Windows" className="h-4 w-3.5 text-ring" />;
@@ -37,7 +37,9 @@ const SystemIcon: FC<{ system: Device["type"] }> = ({ system }) => {
   }
 };
 
-export const DeviceListItem: FC<DeviceListItemProps> = ({ device }) => {
+export const DeviceListItem: React.FC<DeviceListItemProps> = ({ device }) => {
+  const [dialogMode, setDialogMode] = React.useState<"edit" | "delete">("edit");
+
   return (
     <TableRow className="group hover:bg-muted/50 has-[button[data-state=open]]:bg-muted/50 border-b-border-foreground">
       <TableCell>
@@ -54,7 +56,7 @@ export const DeviceListItem: FC<DeviceListItemProps> = ({ device }) => {
         </div>
       </TableCell>
       <TableCell align="right">
-        <DeviceDialog mode="edit" device={device}>
+        <DeviceDialog mode={dialogMode} device={device}>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -67,11 +69,15 @@ export const DeviceListItem: FC<DeviceListItemProps> = ({ device }) => {
 
             <DropdownMenuContent align="end">
               <DialogTrigger asChild>
-                <DropdownMenuItem className="cursor-pointer">Edit</DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer" onClick={() => setDialogMode("edit")}>
+                  Edit
+                </DropdownMenuItem>
               </DialogTrigger>
-              <DropdownMenuItem className="cursor-pointer text-destructive" onClick={() => {}}>
-                Delete
-              </DropdownMenuItem>
+              <DialogTrigger asChild>
+                <DropdownMenuItem className="cursor-pointer text-destructive" onClick={() => setDialogMode("delete")}>
+                  Delete
+                </DropdownMenuItem>
+              </DialogTrigger>
             </DropdownMenuContent>
           </DropdownMenu>
         </DeviceDialog>

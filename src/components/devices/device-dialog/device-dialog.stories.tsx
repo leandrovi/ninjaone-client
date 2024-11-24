@@ -71,3 +71,20 @@ export const EditMac: Story = {
     ),
   },
 };
+
+export const DeleteDevice: Story = {
+  args: {
+    mode: "delete",
+    device: {
+      id: "1",
+      type: "WINDOWS",
+      system_name: "Windows Workstation",
+      hdd_capacity: "256",
+    },
+    children: (
+      <DialogTrigger asChild>
+        <Button variant="destructive">Delete Device</Button>
+      </DialogTrigger>
+    ),
+  },
+};
