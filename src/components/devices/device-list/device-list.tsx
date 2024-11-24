@@ -45,7 +45,7 @@ export const DeviceList: React.FC = () => {
       </TableHeader>
       <TableBody>
         {devices.map((device) => (
-          <DeviceListItem key={device.id} device={device} onEdit={() => {}} onDelete={() => {}} />
+          <DeviceListItem key={device.id} device={device} />
         ))}
       </TableBody>
     </Table>

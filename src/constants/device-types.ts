@@ -4,11 +4,26 @@ export const deviceTypes = {
   MAC: "MAC",
 } as const;
 
-export const deviceTypeOptions = [
+export const deviceTypeFilterOptions = [
   {
     label: "All",
     value: "all",
   },
+  {
+    label: "Windows",
+    value: "WINDOWS",
+  },
+  {
+    label: "Linux",
+    value: "LINUX",
+  },
+  {
+    label: "Mac",
+    value: "MAC",
+  },
+];
+
+export const deviceTypeFormOptions = [
   {
     label: "Windows",
     value: "WINDOWS",

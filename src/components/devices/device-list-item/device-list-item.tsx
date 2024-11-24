@@ -20,8 +20,6 @@ import { DeviceDialog } from "../device-dialog/device-dialog";
 
 interface DeviceListItemProps {
   device: Device;
-  onEdit: () => void;
-  onDelete: () => void;
 }
 
 const SystemIcon: React.FC<{ system: Device["type"] }> = ({ system }) => {

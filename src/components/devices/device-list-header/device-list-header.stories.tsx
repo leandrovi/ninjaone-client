@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { DeviceListHeader } from './device-list-header';
+import type { Meta, StoryObj } from "@storybook/react";
+import { DeviceListHeader } from "./device-list-header";
 
 const meta: Meta<typeof DeviceListHeader> = {
-  title: 'Components/Devices/DeviceListHeader',
+  title: "Devices/DeviceListHeader",
   component: DeviceListHeader,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', background: '#ffffff', padding: '0 20px' }}>
+      <div style={{ width: "100%", background: "#ffffff", padding: "0 20px" }}>
         <Story />
       </div>
     ),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DeviceListFilters } from "./device-list-filters";
 
 const meta: Meta<typeof DeviceListFilters> = {
-  title: "Components/Devices/DeviceListFilters",
+  title: "Devices/DeviceListFilters",
   component: DeviceListFilters,
   parameters: {
     layout: "fullscreen",

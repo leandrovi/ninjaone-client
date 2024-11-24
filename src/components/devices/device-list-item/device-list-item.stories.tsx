@@ -3,7 +3,7 @@ import { DeviceListItem } from "./device-list-item";
 import { Table } from "../../ui/table/table";
 
 const meta: Meta<typeof DeviceListItem> = {
-  title: "Components/Devices/DeviceListItem",
+  title: "Devices/DeviceListItem",
   component: DeviceListItem,
   parameters: {
     layout: "fullscreen",

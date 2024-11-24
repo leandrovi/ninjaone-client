@@ -1,6 +1,7 @@
 import { createContext, useContext, ReactNode, useState } from "react";
 import { useDevices } from "@/hooks/useDevices";
 import { Device } from "@/types/device";
+import { UpdateDevicePayload } from "@/services/api";
 
 type DevicesContextType = {
   search: string;
@@ -14,6 +15,12 @@ type DevicesContextType = {
   devices: Device[];
   isLoading: boolean;
   refetch: () => void;
+  createDevice: (device: Omit<Device, "id">) => Promise<Device>;
+  updateDevice: (id: string, data: UpdateDevicePayload) => Promise<Device>;
+  deleteDevice: (id: string) => Promise<string>;
+  isCreating: boolean;
+  isUpdating: boolean;
+  isDeleting: boolean;
 };
 
 const DevicesContext = createContext<DevicesContextType | undefined>(undefined);
@@ -24,12 +31,13 @@ export const DevicesProvider = ({ children }: { children: ReactNode }) => {
   const [sortBy, setSortBy] = useState("system_name");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
-  const { devices, isLoading, refetch } = useDevices({
-    search,
-    deviceTypes,
-    sortBy,
-    sortDirection,
-  });
+  const { devices, isLoading, refetch, createDevice, updateDevice, deleteDevice, isCreating, isUpdating, isDeleting } =
+    useDevices({
+      search,
+      deviceTypes,
+      sortBy,
+      sortDirection,
+    });
 
   const handleSetSearch = (newSearch: string) => {
     setSearch(newSearch.trim());
@@ -53,6 +61,12 @@ export const DevicesProvider = ({ children }: { children: ReactNode }) => {
         devices,
         isLoading,
         refetch,
+        createDevice,
+        updateDevice,
+        deleteDevice,
+        isCreating,
+        isUpdating,
+        isDeleting,
       }}
     >
       {children}

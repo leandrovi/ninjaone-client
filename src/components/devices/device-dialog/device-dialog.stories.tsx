@@ -5,7 +5,7 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog/dialog";
 import PlusIcon from "@/assets/icons/plus.svg";
 
 const meta = {
-  title: "Components/Devices/DeviceDialog",
+  title: "Devices/DeviceDialog",
   component: DeviceDialog,
   parameters: {
     layout: "centered",

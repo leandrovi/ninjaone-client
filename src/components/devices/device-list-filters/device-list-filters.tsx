@@ -5,13 +5,13 @@ import SearchIcon from "@/assets/icons/search.svg";
 import SyncIcon from "@/assets/icons/sync.svg";
 
 import { cn } from "@/lib/utils";
-import { deviceTypeOptions } from "@/constants/device-types";
+import { deviceTypeFilterOptions } from "@/constants/device-types";
+import { useDevicesContext } from "@/context/devices-context";
 
 import { InputWithIcon } from "@/components/ui/input-with-icon/input-with-icon";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover/popover";
 import { Button } from "@/components/ui/button/button";
 import { MultiSelect } from "@/components/ui/multi-select/multi-select";
-import { useDevicesContext } from "@/context/devices-context";
 
 const sortByOptions = [
   {
@@ -70,7 +70,7 @@ export const DeviceListFilters: React.FC = () => {
         />
 
         <MultiSelect
-          options={deviceTypeOptions}
+          options={deviceTypeFilterOptions}
           onValueChange={setDeviceTypes}
           defaultValue={deviceTypes}
           placeholder="Select device types"

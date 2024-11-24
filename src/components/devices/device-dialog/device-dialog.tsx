@@ -1,28 +1,26 @@
 import * as React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useRef } from "react";
 
-import { deviceTypeOptions } from "@/constants/device-types";
+import { useToast } from "@/hooks/use-toast";
 import { Device } from "@/lib/mock-data";
-import { cn } from "@/lib/utils";
+import { useDevicesContext } from "@/context/devices-context";
 
-import { Button } from "@/components/ui/button/button";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog/dialog";
-import { Input } from "@/components/ui/input/input";
-import { Label } from "@/components/ui/label/label";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog/dialog";
+import { DeviceDeleteDialog } from "../device-delete-dialog/device-delete-dialog";
+import { DeviceFormDialog } from "../device-form-dialog/device-form-dialog";
+
+const deviceSchema = z.object({
+  system_name: z.string().min(1, "System name is required"),
+  type: z.enum(["WINDOWS", "LINUX", "MAC"], {
+    errorMap: () => ({ message: "Device type is required" }),
+  }),
+  hdd_capacity: z.string().min(1, "HDD capacity is required").regex(/^\d+$/, "Must be a number"),
+});
+
+type DeviceFormData = z.infer<typeof deviceSchema>;
 
 interface DeviceDialogProps {
   mode: "edit" | "create" | "delete";
@@ -31,10 +29,68 @@ interface DeviceDialogProps {
 }
 
 export const DeviceDialog: React.FC<DeviceDialogProps> = ({ mode, device, children }) => {
+  const { createDevice, updateDevice, deleteDevice, isCreating, isUpdating, isDeleting } = useDevicesContext();
+  const { toast } = useToast();
+
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const [error, setError] = React.useState<string | null>(null);
+
+  const form = useForm<DeviceFormData>({
+    resolver: zodResolver(deviceSchema),
+    defaultValues: {
+      system_name: device?.system_name || "",
+      type: device?.type || undefined,
+      hdd_capacity: device?.hdd_capacity || "",
+    },
+  });
+
   const getDialogTitle = () => {
     if (mode === "edit") return "Edit device";
     if (mode === "create") return "Add device";
     if (mode === "delete") return "Delete device?";
+  };
+
+  const isSubmitting = isCreating || isUpdating;
+
+  const handleMutate = async (values: DeviceFormData) => {
+    if (!device) return;
+
+    try {
+      setError(null);
+
+      if (mode === "create") {
+        await createDevice(values);
+
+        toast({
+          title: `${values.system_name} created`,
+          description: "Device created successfully",
+          variant: "default",
+        });
+      } else if (mode === "edit") {
+        await updateDevice(device.id, values);
+
+        toast({
+          title: `${values.system_name} updated`,
+          description: "Device updated successfully",
+          variant: "default",
+        });
+      }
+      closeRef.current?.click();
+      form.reset();
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Failed to create device");
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!device) return;
+
+    try {
+      setError(null);
+      await deleteDevice(device.id);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Failed to delete device");
+    }
   };
 
   return (
@@ -45,63 +101,17 @@ export const DeviceDialog: React.FC<DeviceDialogProps> = ({ mode, device, childr
           <DialogTitle>{getDialogTitle()}</DialogTitle>
         </DialogHeader>
 
-        {mode === "delete" ? (
-          <p className="text-sm font-light">
-            You are about to delete the device <span className="font-normal">{device?.system_name}</span>. This action
-            cannot be undone.
-          </p>
+        {mode === "delete" && device ? (
+          <DeviceDeleteDialog device={device} onDelete={handleDelete} isDeleting={isDeleting} error={error} />
         ) : (
-          <div className="flex flex-col gap-5">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="system">System name *</Label>
-              <Input id="system" defaultValue={device?.system_name} />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Label htmlFor="type">Device type *</Label>
-              <Select defaultValue={device?.type}>
-                <SelectTrigger className="w-fulls">
-                  <SelectValue placeholder="Select type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    {deviceTypeOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <Label htmlFor="hdd">HDD capacity (GB) *</Label>
-              <Input id="hdd" defaultValue={device?.hdd_capacity} />
-            </div>
-          </div>
+          <DeviceFormDialog
+            mode={mode as "edit" | "create"}
+            device={device}
+            onSubmit={handleMutate}
+            isSubmitting={isSubmitting}
+            error={error}
+          />
         )}
-
-        <DialogFooter className="mt-2 gap-2 md:gap-1">
-          <DialogClose asChild>
-            <Button
-              variant="outline"
-              className={cn(
-                "font-normal border-outline/25 !py-[11px] hover:border-outline/25 hover:bg-muted",
-                mode === "delete" ? "hover:text-foreground" : "text-primary hover:text-primary",
-              )}
-            >
-              Cancel
-            </Button>
-          </DialogClose>
-
-          <Button
-            type="submit"
-            className={cn("font-normal", mode === "delete" && "bg-destructive hover:bg-destructive/90")}
-          >
-            {mode === "delete" ? "Delete" : "Submit"}
-          </Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

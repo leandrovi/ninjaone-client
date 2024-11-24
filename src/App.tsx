@@ -4,6 +4,7 @@ import { Header } from "./components/layout/header/header";
 import { DeviceListHeader } from "./components/devices/device-list-header/device-list-header";
 import { DeviceList } from "./components/devices/device-list/device-list";
 import { DeviceListFilters } from "./components/devices/device-list-filters/device-list-filters";
+import { Toaster } from "./components/ui/toaster";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ function App() {
             </section>
           </main>
         </div>
+        <Toaster />
       </DevicesProvider>
     </QueryClientProvider>
   );
