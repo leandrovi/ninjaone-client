@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import PlusIcon from '../../../assets/icons/plus.svg';
+import PlusIcon from "../../../assets/icons/plus.svg";
 import { Button } from "../../ui/button";
 
 export const DeviceListHeader: FC = () => {
