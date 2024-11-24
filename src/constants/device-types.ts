@@ -6,6 +6,10 @@ export const deviceTypes = {
 
 export const deviceTypeOptions = [
   {
+    label: "All",
+    value: "all",
+  },
+  {
     label: "Windows",
     value: "WINDOWS",
   },

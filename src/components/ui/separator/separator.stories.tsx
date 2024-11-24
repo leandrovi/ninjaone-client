@@ -113,17 +113,3 @@ export const WithCustomWidth: Story = {
     </div>
   ),
 };
-
-export const Decorative: Story = {
-  args: {
-    decorative: true,
-    className: "my-4",
-  },
-};
-
-export const NonDecorative: Story = {
-  args: {
-    decorative: false,
-    className: "my-4",
-  },
-};

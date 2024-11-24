@@ -11,6 +11,7 @@ import { InputWithIcon } from "@/components/ui/input-with-icon/input-with-icon";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover/popover";
 import { Button } from "@/components/ui/button/button";
 import { MultiSelect } from "@/components/ui/multi-select/multi-select";
+import { useDevicesContext } from "@/context/devices-context";
 
 const sortByOptions = [
   {
@@ -28,9 +29,17 @@ const sortByOptions = [
 ];
 
 export const DeviceListFilters: React.FC = () => {
-  const [deviceTypes, setDeviceTypes] = React.useState<string[]>(["all"]);
-  const [sortBy, setSortBy] = React.useState<(typeof sortByOptions)[number]["value"]>("hdd_capacity");
-  const [sortDirection, setSortDirection] = React.useState<"asc" | "desc">("asc");
+  const {
+    deviceTypes,
+    setDeviceTypes,
+    sortBy,
+    setSortBy,
+    sortDirection,
+    setSortDirection,
+    search,
+    setSearch,
+    refetch,
+  } = useDevicesContext();
 
   const getDisplayValue = (value: string, direction: "asc" | "desc") => {
     const option = sortByOptions.find((option) => option.value === value);
@@ -40,7 +49,11 @@ export const DeviceListFilters: React.FC = () => {
   };
 
   const handleSync = () => {
-    console.log("Syncing devices");
+    setDeviceTypes(["all"]);
+    setSortBy("system_name");
+    setSortDirection("asc");
+    setSearch("");
+    refetch();
   };
 
   return (
@@ -52,6 +65,8 @@ export const DeviceListFilters: React.FC = () => {
           placeholder="Search"
           type="text"
           className="w-full lg:w-[270px]"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
 
         <MultiSelect
