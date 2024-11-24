@@ -10,24 +10,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { MultiSelect } from "@/components/ui/multi-select";
 
-const deviceTypeOptions = [
-  {
-    label: "All",
-    value: "all",
-  },
-  {
-    label: "Windows",
-    value: "WINDOWS",
-  },
-  {
-    label: "Linux",
-    value: "LINUX",
-  },
-  {
-    label: "Mac",
-    value: "MAC",
-  },
-];
+import { deviceTypeOptions } from "@/constants/device-types";
 
 const sortByOptions = [
   {

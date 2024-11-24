@@ -32,6 +32,7 @@
     --border: 247 11% 83%; /* #D1D0D9 */
     --border-secondary: 252 10% 81%; /* #CBC9D3 */
     --border-foreground: 225 9% 91%; /* #E7E8EB */
+    --border-outline: 246 21% 34%; /* #484469 */
     --input: 247 11% 57%; /* #88859E */
     --ring: 248 8% 37%; /* #595766 */
   }

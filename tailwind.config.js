@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ["Inter", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -47,6 +47,7 @@ export default {
           DEFAULT: "hsl(var(--border))",
           secondary: "hsl(var(--border-secondary))",
           foreground: "hsl(var(--border-foreground))",
+          outline: "hsl(var(--border-outline))",
         },
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

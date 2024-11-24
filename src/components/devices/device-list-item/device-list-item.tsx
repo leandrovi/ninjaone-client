@@ -1,14 +1,22 @@
 import { FC } from "react";
 import { MoreHorizontal } from "lucide-react";
 
-import WindowsIcon from "../../../assets/icons/windows.svg";
-import MacIcon from "../../../assets/icons/mac.svg";
-import LinuxIcon from "../../../assets/icons/linux.svg";
-import type { Device } from "../../../lib/mock-data";
+import WindowsIcon from "@/assets/icons/windows.svg";
+import MacIcon from "@/assets/icons/mac.svg";
+import LinuxIcon from "@/assets/icons/linux.svg";
+import type { Device } from "@/lib/mock-data";
 
-import { Button } from "../../ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../../ui/dropdown-menu";
-import { TableCell, TableRow } from "../../ui/table";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { TableCell, TableRow } from "@/components/ui/table";
+import { DialogTrigger } from "@/components/ui/dialog";
+
+import { DeviceDialog } from "../device-dialog/device-dialog";
 
 interface DeviceListItemProps {
   device: Device;
@@ -46,34 +54,27 @@ export const DeviceListItem: FC<DeviceListItemProps> = ({ device }) => {
         </div>
       </TableCell>
       <TableCell align="right">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="invisible group-hover:visible data-[state=open]:visible data-[state=open]:bg-muted h-8 w-8 p-0 hover:bg-muted"
-            >
-              <MoreHorizontal className="h-4 w-4 text-ring" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              className="cursor-pointer"
-              onClick={() => {
-                // Handle edit
-              }}
-            >
-              Edit
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              className="cursor-pointer text-destructive"
-              onClick={() => {
-                // Handle delete
-              }}
-            >
-              Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <DeviceDialog mode="edit" device={device}>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="md:invisible group-hover:visible data-[state=open]:visible data-[state=open]:bg-muted h-8 w-8 p-0 hover:bg-muted"
+              >
+                <MoreHorizontal className="h-4 w-4 text-ring" />
+              </Button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent align="end">
+              <DialogTrigger asChild>
+                <DropdownMenuItem className="cursor-pointer">Edit</DropdownMenuItem>
+              </DialogTrigger>
+              <DropdownMenuItem className="cursor-pointer text-destructive" onClick={() => {}}>
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </DeviceDialog>
       </TableCell>
     </TableRow>
   );
