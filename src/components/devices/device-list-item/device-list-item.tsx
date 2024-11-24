@@ -6,15 +6,15 @@ import MacIcon from "@/assets/icons/mac.svg";
 import LinuxIcon from "@/assets/icons/linux.svg";
 import type { Device } from "@/lib/mock-data";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { TableCell, TableRow } from "@/components/ui/table";
-import { DialogTrigger } from "@/components/ui/dialog";
+} from "@/components/ui/dropdown-menu/dropdown-menu";
+import { TableCell, TableRow } from "@/components/ui/table/table";
+import { DialogTrigger } from "@/components/ui/dialog/dialog";
 
 import { DeviceDialog } from "../device-dialog/device-dialog";
 

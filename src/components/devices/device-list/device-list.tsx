@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { mockDevices } from "@/lib/mock-data";
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table/table";
 
 import { DeviceListItem } from "../device-list-item/device-list-item";
 

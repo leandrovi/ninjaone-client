@@ -1,8 +1,8 @@
 import * as React from "react";
 
 import PlusIcon from "@/assets/icons/plus.svg";
-import { DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { DialogTrigger } from "@/components/ui/dialog/dialog";
+import { Button } from "@/components/ui/button/button";
 
 import { DeviceDialog } from "../device-dialog/device-dialog";
 

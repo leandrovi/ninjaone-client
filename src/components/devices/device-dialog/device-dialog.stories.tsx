@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DeviceDialog } from "./device-dialog";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog/dialog";
 import PlusIcon from "@/assets/icons/plus.svg";
 
 const meta = {
