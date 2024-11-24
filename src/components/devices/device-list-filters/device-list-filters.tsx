@@ -1,16 +1,16 @@
-import React, { FC } from "react";
+import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import DropdownIcon from "@/assets/icons/dropdown.svg";
 import SearchIcon from "@/assets/icons/search.svg";
 import SyncIcon from "@/assets/icons/sync.svg";
+
+import { cn } from "@/lib/utils";
+import { deviceTypeOptions } from "@/constants/device-types";
 
 import { InputWithIcon } from "@/components/ui/input-with-icon";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { MultiSelect } from "@/components/ui/multi-select";
-
-import { deviceTypeOptions } from "@/constants/device-types";
 
 const sortByOptions = [
   {
@@ -27,7 +27,7 @@ const sortByOptions = [
   },
 ];
 
-export const DeviceListFilters: FC = () => {
+export const DeviceListFilters: React.FC = () => {
   const [deviceTypes, setDeviceTypes] = React.useState<string[]>(["all"]);
   const [sortBy, setSortBy] = React.useState<(typeof sortByOptions)[number]["value"]>("hdd_capacity");
   const [sortDirection, setSortDirection] = React.useState<"asc" | "desc">("asc");
@@ -76,6 +76,7 @@ export const DeviceListFilters: FC = () => {
               </div>
             </Button>
           </PopoverTrigger>
+
           <PopoverContent className="w-full md:w-[270px] p-0 font-light rounded-sm">
             <div className="flex flex-col">
               <div className="flex flex-col p-1">

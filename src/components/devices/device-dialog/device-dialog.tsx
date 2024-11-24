@@ -1,14 +1,14 @@
-import React from "react";
+import * as React from "react";
+
+import { deviceTypeOptions } from "@/constants/device-types";
+import { Device } from "@/lib/mock-data";
+import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Device } from "@/lib/mock-data";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-import { deviceTypeOptions } from "@/constants/device-types";
-import { cn } from "@/lib/utils";
 
 interface DeviceDialogProps {
   mode: "edit" | "create" | "delete";
@@ -16,7 +16,7 @@ interface DeviceDialogProps {
   children: React.ReactNode;
 }
 
-export const DeviceDialog = ({ mode, device, children }: DeviceDialogProps) => {
+export const DeviceDialog: React.FC<DeviceDialogProps> = ({ mode, device, children }) => {
   const getDialogTitle = () => {
     if (mode === "edit") return "Edit device";
     if (mode === "create") return "Add device";

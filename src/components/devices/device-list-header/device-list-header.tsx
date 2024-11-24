@@ -1,4 +1,4 @@
-import { FC } from "react";
+import * as React from "react";
 
 import PlusIcon from "@/assets/icons/plus.svg";
 import { DialogTrigger } from "@/components/ui/dialog";
@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 import { DeviceDialog } from "../device-dialog/device-dialog";
 
-export const DeviceListHeader: FC = () => {
+export const DeviceListHeader: React.FC = () => {
   return (
     <div className="flex justify-between items-center py-6 w-full">
       <h1 className="text-xl font-medium text-foreground">Devices</h1>

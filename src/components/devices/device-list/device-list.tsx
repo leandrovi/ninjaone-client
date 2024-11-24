@@ -1,9 +1,11 @@
-import { FC } from "react";
-import { mockDevices } from "../../../lib/mock-data";
-import { DeviceListItem } from "../device-list-item/device-list-item";
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "../../ui/table";
+import * as React from "react";
 
-export const DeviceList: FC = () => {
+import { mockDevices } from "@/lib/mock-data";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+import { DeviceListItem } from "../device-list-item/device-list-item";
+
+export const DeviceList: React.FC = () => {
   return (
     <Table className="w-full">
       <TableHeader>
