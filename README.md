@@ -1,50 +1,151 @@
-# React + TypeScript + Vite
+# NinjaOne Device Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+  <img src=".github/images/application.png" alt="Device Manager Application" width="70%" style="object-fit:contain" />
+  <img src=".github/images/application-mobile.png" alt="Mobile View" width="25%" style="object-fit:contain" />
+</div>
 
-Currently, two official plugins are available:
+A responsive web application built for NinjaOne's technical challenge that manages device inventory with CRUD operations, filtering, and sorting capabilities.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- **Device Management**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - Create, Read, Update and Delete devices
+  - Support for Windows, Mac and Linux devices
+  - Track system name and HDD capacity
 
-- Configure the top-level `parserOptions` property like this:
+- **Advanced Filtering & Sorting**
+  - Filter devices by single or multiple types
+  - Sort by system name or HDD capacity
+  - Responsive design for all screen sizes
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 💻 Tech Stack
+
+- **Framework:** React with TypeScript
+- **Build Tool:** Vite
+- **Data Management:** React Query
+- **UI Components:** Shadcn UI
+- **Testing:** Vitest
+- **Documentation:** Storybook
+- **Styling:** Tailwind CSS with centralized theming
+
+## 📚 Getting Started
+
+### Prerequisites
+
+- Node.js (version 18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/leandrovi/ninjaone-client.git
+cd ninjaone-client
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
+# or
+yarn
 ```
+
+### Running the Application
+
+```bash
+npm run dev     # Start development server
+# or
+yarn dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Running Tests
+
+```bash
+npm run test          # Run tests
+npm run coverage # Run tests with coverage report
+# or
+yarn test
+yarn coverage
+```
+
+### Running Storybook
+
+```bash
+npm run storybook  # Start Storybook server
+# or
+yarn storybook
+```
+
+Storybook will be available at `http://localhost:6006`
+
+### Building for Production
+
+```bash
+npm run build  # Create production build
+# or
+yarn build
+```
+
+## 📚 Architecture
+
+The project follows a clean and modular architecture:
+
+```
+src/
+├── components/
+│   ├── ui/          # Atomic components
+│   ├── devices/     # Device feature components
+│   └── layout/      # Layout components
+├── lib/             # Utilities and configurations
+├── styles/          # Global styles and theme
+├── context/         # Global context
+├── types/           # TypeScript types
+├── assets/          # Static assets
+└── hooks/           # Custom hooks
+```
+
+## 📖 Documentation
+
+All components are thoroughly documented using Storybook, making it easy for developers to understand and reuse components.
+
+![Storybook Documentation](.github/images/storybook.png)
+
+## ✅ Testing
+
+The application includes comprehensive unit tests written with Vitest to ensure reliability and maintainability.
+
+![Tests](.github/images/tests.png)
+
+## 🎯 Project Objectives
+
+This project was developed as part of NinjaOne's technical challenge with the following requirements:
+
+- Implement CRUD operations for device management
+- Support filtering by device type
+- Enable sorting by name and HDD capacity
+- Ensure responsive design
+- Maintain clean code architecture
+
+## 🔍 Additional Features
+
+Beyond the core requirements, this implementation includes:
+
+- Multi-type filtering
+- Comprehensive test coverage
+- Component documentation
+- Responsive design
+- Type-safe development with TypeScript
+
+## 🤝 About the Developer
+
+Built with ❤️ by [Leandro Vieira](https://linkedin.com/in/leandrofv)
+
+## 📝 License
+
+This project is MIT licensed.
