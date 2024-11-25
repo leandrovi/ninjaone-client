@@ -30,7 +30,7 @@ export const DeviceDeleteDialog = ({ device, onDelete, isDeleting, error: initia
   };
 
   return (
-    <DialogContent>
+    <DialogContent aria-describedby={undefined}>
       <DialogHeader>
         <DialogTitle>Delete device?</DialogTitle>
       </DialogHeader>

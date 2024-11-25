@@ -35,8 +35,12 @@ export const DeviceForm = ({ device, onSubmit, onCancel, isSubmitting, error }: 
     },
   });
 
+  function submit(values: DeviceFormData) {
+    onSubmit(values);
+  }
+
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
+    <form onSubmit={form.handleSubmit(submit)} className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
         <Label htmlFor="system_name">System name *</Label>
         <Input id="system_name" {...form.register("system_name")} aria-invalid={!!form.formState.errors.system_name} />
@@ -48,6 +52,7 @@ export const DeviceForm = ({ device, onSubmit, onCancel, isSubmitting, error }: 
       <div className="flex flex-col gap-1">
         <Label htmlFor="type">Device type *</Label>
         <Select
+          name="type"
           defaultValue={device?.type}
           onValueChange={(value) => form.setValue("type", value as "WINDOWS" | "LINUX" | "MAC")}
         >

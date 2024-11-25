@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Input: Story = {
   args: {
-    icon: "/src/assets/icons/search.svg",
+    icon: "../src/assets/icons/search.svg",
     alt: "Search icon",
     placeholder: "Search...",
     type: "search",
@@ -24,7 +24,7 @@ export const Input: Story = {
 
 export const DisabledInput: Story = {
   args: {
-    icon: "/src/assets/icons/search.svg",
+    icon: "../src/assets/icons/search.svg",
     alt: "Search icon",
     placeholder: "Search...",
     disabled: true,
@@ -33,7 +33,7 @@ export const DisabledInput: Story = {
 
 export const WithValue: Story = {
   args: {
-    icon: "/src/assets/icons/search.svg",
+    icon: "../src/assets/icons/search.svg",
     alt: "Search icon",
     placeholder: "Search...",
     defaultValue: "Lorem ipsum dolor sit amet",

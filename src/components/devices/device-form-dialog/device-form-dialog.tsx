@@ -4,7 +4,13 @@ import { Device } from "@/types/device";
 import { useToast } from "@/hooks/use-toast";
 import type { DeviceFormData } from "@/lib/validations/device";
 
-import { DialogClose, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog/dialog";
+import {
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog/dialog";
 import { DeviceForm } from "../device-form/device-form";
 
 interface DeviceFormDialogProps {
@@ -42,7 +48,7 @@ export const DeviceFormDialog = ({
   };
 
   return (
-    <DialogContent>
+    <DialogContent aria-describedby={undefined}>
       <DialogHeader>
         <DialogTitle>{mode === "create" ? "Add device" : "Edit device"}</DialogTitle>
       </DialogHeader>

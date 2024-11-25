@@ -110,6 +110,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
               "flex w-full py-2 pl-3 pr-1 rounded border h-fit items-center justify-between font-light text-sm bg-inherit hover:bg-inherit [&_svg]:pointer-events-auto focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
               className,
             )}
+            data-testid="multi-select-button"
           >
             {selectedValues.length > 0 ? (
               <div className="flex justify-between items-center w-full">

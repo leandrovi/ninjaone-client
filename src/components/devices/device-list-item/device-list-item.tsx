@@ -4,7 +4,7 @@ import { MoreHorizontal } from "lucide-react";
 import WindowsIcon from "@/assets/icons/windows.svg";
 import MacIcon from "@/assets/icons/mac.svg";
 import LinuxIcon from "@/assets/icons/linux.svg";
-import type { Device } from "@/lib/mock-data";
+import type { Device } from "@/types/device";
 
 import { Button } from "@/components/ui/button/button";
 import {
